@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - 3007@localhost" uuid="8b8b493b-6f5d-4db9-8b70-fb7e93377376">
+    <database-info product="MySQL" version="5.5.8" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="3007"/>
+    <table name="actor" schema="" catalog="3007" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="birthday" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_actor_has_film_actor1" table="actor_has_film" schema="" catalog="3007" columns="actor_id"/>
+    </table>
+    <table name="actor_has_film" schema="" catalog="3007" type="TABLE">
+      <column name="actor_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="film_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="actor_id,film_id"/>
+      <foreign-key name="fk_actor_has_film_actor1" columns="actor_id" ref-table="actor" ref-schema="" ref-catalog="3007" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_actor_has_film_film1" columns="film_id" ref-table="film" ref-schema="" ref-catalog="3007" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_actor_has_film_actor1_idx" unique="false" columns="actor_id"/>
+      <index name="fk_actor_has_film_film1_idx" unique="false" columns="film_id"/>
+    </table>
+    <table name="company" schema="" catalog="3007" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="companyname" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_film_company" table="film" schema="" catalog="3007" columns="company_id"/>
+    </table>
+    <table name="film" schema="" catalog="3007" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nazvanie" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="year" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="company_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="fk_film_company" columns="company_id" ref-table="company" ref-schema="" ref-catalog="3007" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="fk_actor_has_film_film1" table="actor_has_film" schema="" catalog="3007" columns="film_id"/>
+      <index name="fk_film_company_idx" unique="false" columns="company_id"/>
+    </table>
+  </data-source>
+</component>
